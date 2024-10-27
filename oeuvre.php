@@ -10,7 +10,7 @@ include('oeuvres.php');
 // Obtenir le nombre total d'œuvres dans le tableau
 $nombreOeuvres = count($oeuvres);
 
-// Si l'ID est supérieur au nombre total d'œuvres, rediriger
+// Si l'ID dans l'url est supérieur au nombre total d'œuvres, rediriger vers l'accueil
 if ($id > $nombreOeuvres || $id < 1) {
     header('location: index.php');
     exit();
@@ -28,14 +28,15 @@ foreach ($oeuvres as $oeuvre) {
 ?>
 <article id="detail-oeuvre">
     <div id="img-oeuvre">
-        <img src="<?php echo $o['image']; ?>" alt="<?php echo $o['titre']; ?>">
+        <img src="<?php echo htmlspecialchars($o['image']); ?>" alt="<?php echo htmlspecialchars($o['titre']); ?>">
     </div>
     <div id="contenu-oeuvre">
-        <h1><?php echo $o['titre']; ?></h1>
-        <p class="description"><?php echo $o['artiste']; ?></p>
+        <h1><?php echo htmlspecialchars($o['titre']); ?></h1>
+        <p class="description"><?php echo htmlspecialchars($o['artiste']); ?></p>
         <p class="description-complete">
-            <?php echo $o['description']; ?>
+            <?php echo htmlspecialchars($o['description']); ?>
         </p>
     </div>
 </article>
+
 <?php include('footer.php'); ?>
